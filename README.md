@@ -2,7 +2,7 @@
 
 ## Local dev
 
-1. Create the .env files in the `root`, `server` and `client` folders. There are example for each file, see `.env.example`
+1. Create the .env files in the `server` and `client` folders. There are example for each file, see `.env.example`
 2. Run `npm i` for each directory. You can split terminal for comfortable work
 3. Run `npm run dev` for each directory. Thats it
 
