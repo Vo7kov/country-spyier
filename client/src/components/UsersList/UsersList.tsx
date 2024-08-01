@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { httpClient } from '@/api/client';
 import axios from 'axios';
 
-import { ErrorCard } from '@/components/ErrorCard/ErrorCard';
-import { Loader } from '@/components/Loader/Loader';
+import { ErrorCard } from '@/components/ErrorCard';
+import { Loader } from '@/components/Loader';
 
 export const UsersList: React.FC = () => {
   const [countries, setCountries] = useState(null);
