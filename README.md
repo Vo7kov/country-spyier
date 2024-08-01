@@ -7,8 +7,11 @@
 3. Run `npm run dev` for each directory. Thats it
 
 ### If you want work with local database
-1. run `docker compose -f db-compose.yaml up --build -d`
+1. Change directory to root
+2. run `docker build -f db.dockerfile -t db-image .`
+3. run `docker run -d --name db db-image`
 
 ## Docker
-1. run `docker compose build`
-2. run `docker compose up -d`
+1. Change directory to root
+2. run `docker compose build`
+3. run `docker compose up -d`
