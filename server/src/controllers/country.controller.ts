@@ -12,9 +12,9 @@ const getAllContries = async (req: Request, res: Response) => {
 const update = async (req: Request, res: Response) => {
   updateSchema.parse(req.body);
 
-  const { countryCode } = req.body;
+  const { countryCode, ip } = req.body;
 
-  res.send(await countryService.checkCountry(countryCode));
+  res.send(await countryService.checkCountry(countryCode, ip));
 };
 
 export const countryController = {

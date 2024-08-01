@@ -4,4 +4,7 @@ export const updateSchema = z.object({
   countryCode: z.string().trim().min(1, {
     message: 'Введите код страны',
   }),
+  ip: z.string().trim().min(1, {
+    message: 'Введите ip',
+  }),
 });

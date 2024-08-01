@@ -7,15 +7,25 @@ const getAllContries = async () => {
   return await redisClient.hGetAll(HASH_NAME);
 };
 
-const getOrSetCache = async (key: string, field: string) => {
-  return await redisClient
-    .hIncrBy(field, key, 1)
-    .then(() => 204)
-    .catch(() => clientError.parse(''));
+const checkCountry = async (countryCode: string, ip: string) => {
+  return await getOrSetCache(countryCode, HASH_NAME, ip);
 };
 
-const checkCountry = async (countryCode: string) => {
-  return await getOrSetCache(countryCode, HASH_NAME);
+const getOrSetCache = async (key: string, field: string, ip: string) => {
+  const ipSetKey = `${field}:${key}:ips`;
+  const isMember = await redisClient.sIsMember(ipSetKey, ip);
+
+  if (isMember) {
+    return 204;
+  }
+
+  return await redisClient
+    .multi()
+    .sAdd(ipSetKey, ip)
+    .hIncrBy(field, key, 1)
+    .exec()
+    .then(() => 204)
+    .catch(() => clientError.parse(''));
 };
 
 export const countryService = {
