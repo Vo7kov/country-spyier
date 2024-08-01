@@ -10,7 +10,7 @@ const getAllContries = async () => {
 const getOrSetCache = async (key: string, field: string) => {
   return await redisClient
     .hIncrBy(field, key, 1)
-    .then(() => (204))
+    .then(() => 204)
     .catch(() => clientError.parse(''));
 };
 
